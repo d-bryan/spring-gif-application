@@ -8,14 +8,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GifController {
 
   @RequestMapping("/")
-  public String listGifs() {
+  public String home() {
     return "home";
-  } // end listGifs method
+  } // end home route
 
-  @RequestMapping("/gif")
-  @ResponseBody
-  public String optionalGif() {
-    return "Here is some more GIFs";
-  } // end optionalGif method
+  @RequestMapping("/categories")
+  public String categories() {
+    return "categories";
+  } // end categories route
+
+  @RequestMapping("/category")
+  public String category() {
+    return "category";
+  } // end category route
+
+  @RequestMapping("/gif-details")
+  public String gifDetails() {
+    return "gif-details";
+  } // end gifDetails route
+
+  @RequestMapping("/favorites")
+  public String favorites () {
+    return "favorites";
+  } // end favorites route
 
 } // end GifController class
