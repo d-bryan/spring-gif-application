@@ -64,8 +64,8 @@
             </div>
             <div class="col s12 l6">
                 <div class="share">
-                    <a class="btn right" href="#">Copy</a>
-                    <span th:text="'localhost:8080/gif/' + ${gif.name}">URL</span>
+                    <a class="btn right" href="#" onclick="copyText()">Copy</a>
+                    <span id="copy-link" th:text="'https://gif-spring-website.herokuapp.com/gif/' + ${gif.name}">URL</span>
                 </div>
             </div>
         </div>
