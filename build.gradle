@@ -18,6 +18,12 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web:2.4.1'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf:2.4.1'
     compile 'org.springframework.boot:spring-boot-starter-actuator:2.4.1'
+    compile 'org.springframework:spring-orm:5.3.2'
+    compile 'org.hashids:hashids:1.0.3'
+    compile 'org.hibernate:hibernate-core:5.4.25.Final'
+    compile 'org.apache.tomcat:tomcat-dbcp:10.0.0'
+    compile 'com.h2database:h2:1.4.200'
+    compile 'javax.transaction:jta:1.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }

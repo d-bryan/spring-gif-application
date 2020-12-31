@@ -1,50 +1,57 @@
 package com.dylan.giflib.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Category {
-  private static int counter = 0;
-  private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   private String name;
+  private String colorCode;
 
-  /**
-   * Creates a new Category object
-   * @param name String Name
-   */
-  public Category(String name) {
-    counter += 1;
-    this.id = counter;
-    this.name = name;
-  } // end Category constructor
+  @OneToMany(mappedBy = "category")
+  private List<Gif> gifs = new ArrayList<>();
 
-  /**
-   * Get current ID
-   * @return Integer ID
-   */
-  public int getId() {
+  public Category(){}
+
+  public Long getId() {
     return id;
   } // end getId method
 
-  /**
-   * Set current ID
-   * @param id Integer ID
-   */
-  public void setId(int id) {
+  public void setId(Long id) {
     this.id = id;
   } // end setId method
 
-  /**
-   * Get the current Name
-   * @return String name
-   */
   public String getName() {
     return name;
   } // end getName method
 
-  /**
-   * Set the name value
-   * @param name String name
-   */
   public void setName(String name) {
     this.name = name;
   } // end setName method
+
+  public String getColorCode() {
+    return colorCode;
+  } // end getColorCode method
+
+  public void setColorCode(String colorCode) {
+    this.colorCode = colorCode;
+  } // end setColorCode method
+
+  public List<Gif> getGifs() {
+    return gifs;
+  } // end getGifs method
+
+  public void setGifs(List<Gif> gifs) {
+    this.gifs = gifs;
+  } // end setGifs method
 
 } // end Category class

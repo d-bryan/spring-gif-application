@@ -6,9 +6,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableAutoConfiguration
 @ComponentScan
-public class AppConfig {
+public class Application {
 
   public static void main(String[] args) {
-    SpringApplication.run(AppConfig.class, args);
+    SpringApplication.run(Application.class, args);
   } // end main method
 } // end AppConfig class

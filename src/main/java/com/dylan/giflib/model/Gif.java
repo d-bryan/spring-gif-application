@@ -1,116 +1,111 @@
 package com.dylan.giflib.model;
 
-import java.time.LocalDate;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
+@Entity
 public class Gif {
-  private String name;
-  private LocalDate dateUploaded;
-  private String username;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @Lob
+  private byte[] bytes;
+
+  private String description;
+
+  @ManyToOne
+  private Category category;
+  private LocalDateTime dateUploaded;
+  private String username = "You";
   private boolean favorite;
-  private int category;
+  private String hash;
 
-  /**
-   * Creates new Gif object
-   *
-   * @param name
-   * @param dateUploaded
-   * @param username
-   * @param favorite
-   */
-  public Gif(String name, LocalDate dateUploaded, String username, boolean favorite, int category) {
-    this.name = name;
-    this.dateUploaded = dateUploaded;
-    this.username = username;
-    this.favorite = favorite;
+  public Gif(){}
+
+  public String getTimeSinceUploaded() {
+    String unit = "";
+    LocalDateTime now = LocalDateTime.now();
+    long diff;
+    if ((diff = ChronoUnit.SECONDS.between(dateUploaded, now)) < 60) {
+      unit = "secs";
+    } else if ((diff = ChronoUnit.MINUTES.between(dateUploaded, now)) < 60) {
+      unit = "mins";
+    } else if ((diff = ChronoUnit.HOURS.between(dateUploaded, now)) < 24) {
+      unit = "hours";
+    } else if ((diff = ChronoUnit.DAYS.between(dateUploaded, now)) < 30) {
+      unit = "days";
+    } else if ((diff = ChronoUnit.MONTHS.between(dateUploaded, now)) < 12) {
+      unit = "months";
+    } else {
+      diff = ChronoUnit.YEARS.between(dateUploaded, now);
+    } // end if/else if/else statement
+    return String.format("%d %s", diff, unit);
+  } // end getTimeSinceUploaded method
+
+  public Long getId() {
+    return id;
+  } // end getId method
+
+  public void setId(Long id) {
+    this.id = id;
+  } // end setId method
+
+  public byte[] getBytes() {
+    return bytes;
+  } // end getBytes method
+
+  public void setBytes(byte[] bytes) {
+    this.bytes = bytes;
+  } // end setBytes method
+
+  public String getDescription() {
+    return description;
+  } // end getDescription method
+
+  public void setDescription(String description) {
+    this.description = description;
+  } // end setDescription method
+
+  public Category getCategory() {
+    return category;
+  } // end getCategory method
+
+  public void setCategory(Category category) {
     this.category = category;
-  } // end Gif constructor
+  } // end setCategory method
 
-  /**
-   * Get the name value
-   *
-   * @return String value
-   */
-  public String getName() {
-    return name;
-  } // end getName method
-
-  /**
-   * Set the name value
-   *
-   * @param name
-   */
-  public void setName(String name) {
-    this.name = name;
-  } // end setName method
-
-  /**
-   * Get the Date uploaded value
-   *
-   * @return LocalDate object
-   */
-  public LocalDate getDateUploaded() {
+  public LocalDateTime getDateUploaded() {
     return dateUploaded;
   } // end getDateUploaded method
 
-  /**
-   * Set the Date uploaded value
-   *
-   * @param dateUploaded
-   */
-  public void setDateUploaded(LocalDate dateUploaded) {
+  public void setDateUploaded(LocalDateTime dateUploaded) {
     this.dateUploaded = dateUploaded;
   } // end setDateUploaded method
 
-  /**
-   * Get the username value
-   *
-   * @return String value
-   */
   public String getUsername() {
     return username;
   } // end getUsername method
 
-  /**
-   * Set the username value
-   *
-   * @param username
-   */
   public void setUsername(String username) {
     this.username = username;
   } // end setUsername method
 
-  /**
-   * Get the boolean favorite value
-   *
-   * @return true/false value
-   */
   public boolean isFavorite() {
     return favorite;
   } // end isFavorite method
 
-  /**
-   * Set the boolean favorite value
-   *
-   * @param favorite
-   */
   public void setFavorite(boolean favorite) {
     this.favorite = favorite;
   } // end setFavorite method
 
-  /**
-   * Retrieves the category
-   * @return Integer ID
-   */
-  public int getCategory() {
-    return category;
-  } // end getCategory method
+  public String getHash() {
+    return hash;
+  } // end getHash method
 
-  /**
-   * Sets the category
-   * @param category Integer ID
-   */
-  public void setCategory(int category) {
-    this.category = category;
-  } // end setCategory method
+  public void setHash(String hash) {
+    this.hash = hash;
+  } // end setHash method
 
 } // end Gif class
